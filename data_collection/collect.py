@@ -35,25 +35,6 @@ def on_press(key):
     if key == pynput.keyboard.KeyCode(char='p'):
         raise Exception
 
-    # if key in keys_to_listen_for:
-    #     CURRENT_KEYS.add(key)
-    #     if all(k in CURRENT_KEYS for k in combinations[0]):
-    #         output = [1, 0, 0, 0, 0, 0, 0, 0]
-    #     elif all(k in CURRENT_KEYS for k in combinations[1]):
-    #         output = [0, 1, 0, 0, 0, 0, 0, 0]
-    #     elif all(k in CURRENT_KEYS for k in combinations[2]):
-    #         output = [0, 0, 1, 0, 0, 0, 0, 0]
-    #     elif all(k in CURRENT_KEYS for k in combinations[3]):
-    #         output = [0, 0, 0, 1, 0, 0, 0, 0]
-    #     elif key == pynput.keyboard.Key.up:
-    #         output = [0, 0, 0, 0, 1, 0, 0, 0]
-    #     elif key == pynput.keyboard.Key.left:
-    #         output = [0, 0, 0, 0, 0, 1, 0, 0]
-    #     elif key == pynput.keyboard.Key.down:
-    #         output = [0, 0, 0, 0, 0, 0, 1, 0]
-    #     elif key == pynput.keyboard.Key.right:
-    #         output = [0, 0, 0, 0, 0, 0, 0, 1]
-
     if key in keys_to_listen_for:
         CURRENT_KEYS.add(key)
         if all(k in CURRENT_KEYS for k in combinations[0]):
@@ -76,13 +57,6 @@ def on_press(key):
     image = screenshot('Trackmania')
     images = TRAINING_DATA.get(output)
     images.append(image)
-    # image = cv2.resize(image, (240, 180))
-    # Remove alpha channel from the captured image.
-    # image = cv2.cvtColor(image, cv2.COLOR_RGBA2RGB)
-    #
-    # TRAINING_DATA.append([image, output])
-
-
 
 
 def on_release(key):
@@ -103,11 +77,29 @@ with pynput.keyboard.Listener(on_press=on_press, on_release=on_release) as liste
 
 for key in TRAINING_DATA.keys():
     images = TRAINING_DATA[key]
-
     image_nb = 0
-
     for image in images:
-
         image.save('../data/' + key + '/' + str(image_nb) + '.jpeg')
-
         image_nb += 1
+
+
+
+    # if key in keys_to_listen_for:
+    #     CURRENT_KEYS.add(key)
+    #     if all(k in CURRENT_KEYS for k in combinations[0]):
+    #         output = [1, 0, 0, 0, 0, 0, 0, 0]
+    #     elif all(k in CURRENT_KEYS for k in combinations[1]):
+    #         output = [0, 1, 0, 0, 0, 0, 0, 0]
+    #     elif all(k in CURRENT_KEYS for k in combinations[2]):
+    #         output = [0, 0, 1, 0, 0, 0, 0, 0]
+    #     elif all(k in CURRENT_KEYS for k in combinations[3]):
+    #         output = [0, 0, 0, 1, 0, 0, 0, 0]
+    #     elif key == pynput.keyboard.Key.up:
+    #         output = [0, 0, 0, 0, 1, 0, 0, 0]
+    #     elif key == pynput.keyboard.Key.left:
+    #         output = [0, 0, 0, 0, 0, 1, 0, 0]
+    #     elif key == pynput.keyboard.Key.down:
+    #         output = [0, 0, 0, 0, 0, 0, 1, 0]
+    #     elif key == pynput.keyboard.Key.right:
+    #         output = [0, 0, 0, 0, 0, 0, 0, 1]
+
