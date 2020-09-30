@@ -21,7 +21,7 @@ validation_dataset = tf.keras.preprocessing.image_dataset_from_directory(
     image_size=IMAGE_SIZE,
     batch_size=BATCH_SIZE
 )
-
+print(train_dataset.class_names)
 model = tf.keras.Sequential([
   layers.experimental.preprocessing.Rescaling(1./255),
   layers.Conv2D(32, 3, activation='relu'),
@@ -45,3 +45,5 @@ model.fit(
     validation_data=validation_dataset,
     epochs=10
 )
+
+model.save('../models/saved/cnn.h5')

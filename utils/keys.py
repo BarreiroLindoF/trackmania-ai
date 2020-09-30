@@ -1,64 +1,76 @@
-# keys.py
+from utils.key_handler import press_key, release_key, UP, DOWN, LEFT, RIGHT
 
-import time
-import pynput
 
-def forward(controller, press_duration = 0.0075):
-    controller.press(pynput.keyboard.Key.up)
-    controller.release(pynput.keyboard.Key.left)
-    controller.release(pynput.keyboard.Key.right)
-    controller.release(pynput.keyboard.Key.down)
-    time.sleep(press_duration)
+def forward():
+    press_key(UP)
+    release_key(DOWN)
+    release_key(LEFT)
+    release_key(RIGHT)
 
-def left(controller, press_duration = 0.006):
-    controller.press(pynput.keyboard.Key.left)
-    controller.release(pynput.keyboard.Key.right)
-    controller.release(pynput.keyboard.Key.up)
-    controller.release(pynput.keyboard.Key.down)
-    time.sleep(press_duration)
 
-def right(controller, press_duration = 0.006):
-    controller.press(pynput.keyboard.Key.right)
-    controller.release(pynput.keyboard.Key.left)
-    controller.release(pynput.keyboard.Key.up)
-    controller.release(pynput.keyboard.Key.down)
-    time.sleep(press_duration)
+def left():
+    release_key(UP)
+    release_key(DOWN)
+    press_key(LEFT)
+    release_key(RIGHT)
 
-def reverse(controller, press_duration = 0.006):
-    controller.press(pynput.keyboard.Key.down)
-    controller.release(pynput.keyboard.Key.up)
-    controller.release(pynput.keyboard.Key.right)
-    controller.release(pynput.keyboard.Key.left)
-    time.sleep(press_duration)
 
-def forward_left(controller, press_duration = 0.006):
-    controller.press(pynput.keyboard.Key.up)
-    controller.press(pynput.keyboard.Key.left)
-    controller.release(pynput.keyboard.Key.right)
-    controller.release(pynput.keyboard.Key.down)
-    time.sleep(press_duration)
-    controller.release(pynput.keyboard.Key.left)
+def right():
+    release_key(UP)
+    release_key(DOWN)
+    release_key(LEFT)
+    press_key(RIGHT)
 
-def forward_right(controller, press_duration = 0.006):
-    controller.press(pynput.keyboard.Key.up)
-    controller.press(pynput.keyboard.Key.right)
-    controller.release(pynput.keyboard.Key.down)
-    controller.release(pynput.keyboard.Key.left)
-    time.sleep(press_duration)
-    controller.release(pynput.keyboard.Key.right)
 
-def reverse_left(controller, press_duration = 0.006):
-    controller.press(pynput.keyboard.Key.down)
-    controller.press(pynput.keyboard.Key.left)
-    controller.release(pynput.keyboard.Key.up)
-    controller.release(pynput.keyboard.Key.right)
-    time.sleep(press_duration)
-    controller.release(pynput.keyboard.Key.left)
+def reverse():
+    release_key(UP)
+    press_key(DOWN)
+    release_key(LEFT)
+    release_key(RIGHT)
 
-def reverse_right(controller, press_duration = 0.006):
-    controller.press(pynput.keyboard.Key.down)
-    controller.press(pynput.keyboard.Key.right)
-    controller.release(pynput.keyboard.Key.left)
-    controller.release(pynput.keyboard.Key.up)
-    time.sleep(press_duration)
-    controller.release(pynput.keyboard.Key.right)
+
+def forward_left():
+    press_key(UP)
+    release_key(DOWN)
+    press_key(LEFT)
+    release_key(RIGHT)
+
+
+def forward_right():
+    press_key(UP)
+    release_key(DOWN)
+    release_key(LEFT)
+    press_key(RIGHT)
+
+
+def reverse_left():
+    release_key(UP)
+    press_key(DOWN)
+    press_key(LEFT)
+    release_key(RIGHT)
+
+
+def reverse_right():
+    release_key(UP)
+    press_key(DOWN)
+    release_key(LEFT)
+    press_key(RIGHT)
+
+
+def pressKey(state_id: int):
+    if state_id == 0:
+        reverse()
+    elif state_id == 1:
+        reverse_left()
+    elif state_id == 2:
+        reverse_right()
+    elif state_id == 3:
+        forward()
+    elif state_id == 4:
+        forward_left()
+    elif state_id == 5:
+        forward_right()
+    elif state_id == 6:
+        left()
+    elif state_id == 7:
+        right()
